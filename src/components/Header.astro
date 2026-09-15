@@ -1,7 +1,8 @@
 ---
 import { SITE, WA_LINK } from "../lib/site";
+import { servicios } from "../lib/services";
+import { Icon } from "astro-icon/components";
 const links = [
-	{ href: "/servicios", label: "Servicios" },
 	{ href: "/#metodo", label: "Método" },
 	{ href: "/#beneficios", label: "Beneficios" },
 	{ href: "/#para-quien", label: "Para quién" },
@@ -26,6 +27,51 @@ const links = [
 		</a>
 
 		<nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
+			<div class="relative group">
+				<a
+					href="/servicios"
+					aria-haspopup="true"
+					aria-expanded="false"
+					data-nav-trigger
+					class="nav-link flex items-center gap-1 text-sm font-medium tracking-wide text-ink/80 transition-colors hover:text-ink"
+				>
+					Servicios
+					<Icon
+						name="lucide:chevron-down"
+						class="h-3 w-3 transition-transform duration-300 group-hover:rotate-180"
+					/>
+					<span aria-hidden="true"></span>
+				</a>
+
+				<div
+					class="pointer-events-none absolute left-0 top-full w-80 pt-3 opacity-0 translate-y-2 invisible transition-all duration-300 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0"
+				>
+					<div class="overflow-hidden rounded-xl bg-char shadow-2xl ring-1 ring-white/10">
+						<ul class="py-2">
+							{servicios.map((s) => (
+								<li>
+									<a
+										href={`/servicios/${s.slug}`}
+										class="block px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5 hover:text-lime"
+									>
+										{s.titulo}
+									</a>
+								</li>
+							))}
+							<li class="mt-1 border-t border-white/10">
+								<a
+									href="/servicios"
+									class="flex items-center justify-between px-5 py-3 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-lime"
+								>
+									Todos los servicios
+									<Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
 			{links.map((l) => (
 				<a
 					href={l.href}
@@ -37,25 +83,186 @@ const links = [
 			))}
 		</nav>
 
-		<a
-			href={WA_LINK}
-			target="_blank"
-			rel="noopener"
-			class="btn btn-lime shine !px-5 !py-2.5 !text-sm"
-		>
-			<svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
-				<path d="M12 2a9.93 9.93 0 0 0-8.6 14.98L2 22l5.2-1.36A9.94 9.94 0 1 0 12 2Zm0 2.83a7.11 7.11 0 1 1-3.63 13.22l-.39-.23-3.05.8.81-2.97-.26-.4A7.11 7.11 0 0 1 12 4.83Zm-3.2 3.9c-.18 0-.47.07-.72.33-.24.27-.94.92-.94 2.24s.96 2.6 1.1 2.78c.13.18 1.9 2.9 4.6 4.07 2.28.98 2.74.79 3.24.73.5-.05 1.6-.65 1.83-1.29.22-.63.22-1.17.16-1.29-.07-.11-.25-.18-.52-.32s-1.6-.79-1.85-.88c-.25-.08-.43-.13-.6.13s-.7.88-.86 1.06c-.16.19-.32.21-.6.07a7.7 7.7 0 0 1-2.23-1.37 8.08 8.08 0 0 1-1.54-1.92c-.16-.27-.02-.42.12-.55.13-.13.29-.33.43-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5s-.6-1.5-.86-2.05c-.22-.52-.45-.45-.62-.46Z" />
-			</svg>
-			<span class="hidden sm:inline">Cotizar por WhatsApp</span>
-			<span class="sm:hidden">Cotizar</span>
-		</a>
+		<div class="flex items-center gap-3">
+			<a
+				href={WA_LINK}
+				target="_blank"
+				rel="noopener"
+				class="btn btn-lime shine hidden !px-5 !py-2.5 !text-sm lg:inline-flex"
+			>
+				<Icon name="simple-icons:whatsapp" class="h-4 w-4" />
+				<span>Cotizar por WhatsApp</span>
+			</a>
+
+			<button
+				type="button"
+				data-nav-toggle
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+				class="group inline-flex size-8 items-center justify-center rounded-full text-ink transition-colors lg:hidden"
+			>
+				<span class="relative block h-6 w-6" aria-hidden="true">
+					<Icon
+						name="lucide:menu"
+						class="absolute inset-0 h-6 w-6 transition-all duration-300 group-aria-expanded:rotate-90 group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
+					/>
+					<Icon
+						name="lucide:x"
+						class="absolute inset-0 h-6 w-6 rotate-90 scale-0 opacity-0 transition-all duration-300 group-aria-expanded:rotate-0 group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
+					/>
+				</span>
+				<span class="sr-only">Abrir menú</span>
+			</button>
+		</div>
 	</div>
 </header>
+
+<aside
+	id="mobile-menu"
+	data-mobile-menu
+	aria-hidden="true"
+	class="fixed inset-0 z-[60] flex flex-col bg-coal/95 backdrop-blur-xl transition-all duration-300 translate-x-full invisible pointer-events-none lg:hidden"
+>
+	<div class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
+		<a href="/" class="flex items-center" aria-label={`${SITE.name} — ir al inicio`}>
+			<img src="/log-t.png" alt="Logo de la empresa" class="h-10 w-auto" />
+		</a>
+
+		<button
+			type="button"
+			data-nav-close
+			class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-lime hover:text-lime"
+			aria-label="Cerrar menú"
+		>
+			<Icon name="lucide:x" class="h-5 w-5" />
+		</button>
+	</div>
+
+	<nav class="flex flex-1 flex-col gap-8 overflow-y-auto px-6 pt-6 pb-12" aria-label="Navegación móvil">
+		<div>
+			<a
+				href="/servicios"
+				class="text-2xl font-black tracking-tight text-white transition-colors hover:text-lime"
+			>
+				Servicios
+			</a>
+			<ul class="mt-4 space-y-3 border-l border-white/10 pl-5">
+				{servicios.map((s) => (
+					<li>
+						<a
+							href={`/servicios/${s.slug}`}
+							class="font-mono text-sm text-white/60 transition-colors hover:text-lime"
+						>
+							{s.titulo}
+						</a>
+					</li>
+				))}
+				<li>
+					<a
+						href="/servicios"
+						class="font-mono text-sm text-white/60 transition-colors hover:text-lime"
+					>
+						Todos los servicios
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		{links.map((l) => (
+			<a
+				href={l.href}
+				class="text-2xl font-black tracking-tight text-white transition-colors hover:text-lime"
+			>
+				{l.label}
+			</a>
+		))}
+
+		<div class="pt-2">
+			<a href={WA_LINK} target="_blank" rel="noopener" class="btn btn-lime shine w-full">
+				Hablemos por WhatsApp
+			</a>
+		</div>
+	</nav>
+</aside>
+
+<a
+	href={WA_LINK}
+	target="_blank"
+	rel="noopener"
+	data-wa-float
+	aria-label="Cotizar por WhatsApp"
+	class="btn btn-lime shine fixed right-5 bottom-5 z-40 !h-14 !w-14 !rounded-full !p-0 transition-all duration-300 lg:hidden"
+>
+	<Icon name="simple-icons:whatsapp" class="h-6 w-6" />
+</a>
 
 <script>
 	// El nav arranca visible y adquiere fondo blanco al scrollear
 	const nav = document.getElementById("site-nav");
 	const navLinks = document.querySelectorAll(".nav-link");
+	const navTrigger = document.querySelector("[data-nav-trigger]");
+	const navGroup = navTrigger?.parentElement;
+
+	const syncAria = () => {
+		if (navTrigger) {
+			navTrigger.setAttribute(
+				"aria-expanded",
+				navGroup?.matches(":hover, :focus-within") ? "true" : "false"
+			);
+		}
+	};
+
+	if (navGroup) {
+		navGroup.addEventListener("mouseenter", syncAria);
+		navGroup.addEventListener("mouseleave", syncAria);
+		navGroup.addEventListener("focusin", syncAria);
+		navGroup.addEventListener("focusout", syncAria);
+	}
+
+	// Menú móvil
+	const burger = document.querySelector("[data-nav-toggle]");
+	const menu = document.querySelector("[data-mobile-menu]");
+	const menuClose = document.querySelector("[data-nav-close]");
+	const waFloat = document.querySelector("[data-wa-float]");
+
+	const openMenu = () => {
+		menu.classList.remove("translate-x-full", "invisible", "pointer-events-none");
+		menu.setAttribute("aria-hidden", "false");
+		burger.setAttribute("aria-expanded", "true");
+		document.body.style.overflow = "hidden";
+		if (waFloat) waFloat.classList.add("opacity-0", "pointer-events-none");
+	};
+
+	const closeMenu = () => {
+		menu.classList.add("translate-x-full", "invisible", "pointer-events-none");
+		menu.setAttribute("aria-hidden", "true");
+		burger.setAttribute("aria-expanded", "false");
+		document.body.style.overflow = "";
+		if (waFloat) waFloat.classList.remove("opacity-0", "pointer-events-none");
+		burger.focus();
+	};
+
+	if (burger && menu) {
+		burger.addEventListener("click", () => {
+			if (menu.classList.contains("translate-x-full")) {
+				openMenu();
+			} else {
+				closeMenu();
+			}
+		});
+	}
+
+	menuClose?.addEventListener("click", closeMenu);
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && menu && !menu.classList.contains("translate-x-full")) {
+			closeMenu();
+		}
+	});
+
+	menu?.querySelectorAll("a").forEach((a) => {
+		a.addEventListener("click", closeMenu);
+	});
 
 	if (nav) {
 		let ticking = false;
@@ -68,11 +275,13 @@ const links = [
 
 			if (y > 24) {
 				nav.classList.remove("bg-transparent");
-				nav.classList.add("bg-black/90", "backdrop-blur-md","text-white");
+				nav.classList.add("bg-black/90", "backdrop-blur-md", "text-white");
 				navLinks.forEach((link) => {
 					link.classList.remove("text-ink/80", "hover:text-ink");
 					link.classList.add("text-white", "hover:text-white");
 				});
+				burger?.classList.remove("border-ink/20", "text-ink");
+				burger?.classList.add("border-white/20", "text-white");
 			} else {
 				nav.classList.add("bg-transparent");
 				nav.classList.remove("bg-white/90", "backdrop-blur-md");
@@ -80,6 +289,8 @@ const links = [
 					link.classList.remove("text-white", "hover:text-white");
 					link.classList.add("text-black", "hover:text-black");
 				});
+				burger?.classList.add("border-ink/20", "text-ink");
+				burger?.classList.remove("border-white/20", "text-white");
 			}
 
 			ticking = false;
