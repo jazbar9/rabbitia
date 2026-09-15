@@ -1,0 +1,17 @@
+{
+  "53d18dfa5496236b4396d6d087fb0e461686496d49b4abfc960bd5e67afd67b2:15d924286498": {
+    "componentId": "rabbit-fullbody",
+    "dominantAlbedo": "rgba(127, 255, 0, 1.0)",
+    "secondaryAlbedo": "rgba(243, 243, 223, 1.0)",
+    "materialClass": "plastic",
+    "materialClassConfidence": 0.6,
+    "roughnessEstimate": 0.133,
+    "metalnessEstimate": 0.0,
+    "highlightEvidence": "sharp, tight specular hotspot — supports low roughness/high specularity",
+    "sourceCropPath": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\public\\rabbit.png",
+    "labClusterMeta": {
+      "clusterCount": 3,
+      "dominantClusterSharePct": 0.991
+    }
+  }
+}

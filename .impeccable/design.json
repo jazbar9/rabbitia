@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-04T17:10:00.000Z",
+  "title": "Design System: Consultora tech — Landing",
+  "extensions": {
+    "colorMeta": {
+      "electric-cyan": {
+        "role": "primary",
+        "displayName": "Cian Eléctrico",
+        "canonical": "oklch(0.9 0.12 190)",
+        "tonalRamp": [
+          "#04252a",
+          "#063a41",
+          "#0a5159",
+          "#0e6a74",
+          "#13848f",
+          "#189faa",
+          "#1ebbc3",
+          "#2ee6e8"
+        ]
+      },
+      "whatsapp-green": {
+        "role": "secondary",
+        "displayName": "Verde WhatsApp",
+        "canonical": "oklch(0.79 0.24 155)",
+        "tonalRamp": [
+          "#052310",
+          "#0a3a1c",
+          "#0f5227",
+          "#146a32",
+          "#18833e",
+          "#1d9d4c",
+          "#21b85c",
+          "#25d366"
+        ]
+      },
+      "void": {
+        "role": "neutral",
+        "displayName": "Void / Fondo",
+        "canonical": "oklch(0.12 0.01 230)",
+        "tonalRamp": [
+          "#000000",
+          "#04050a",
+          "#07090c",
+          "#0d1117",
+          "#121821",
+          "#161d26",
+          "#232b34",
+          "#39434e"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Cream (Texto)",
+        "canonical": "oklch(0.93 0.005 220)",
+        "tonalRamp": [
+          "#39434e",
+          "#4f5a66",
+          "#66727f",
+          "#7d8996",
+          "#9aa7b4",
+          "#b6c0c9",
+          "#d2d9df",
+          "#e8edf2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display / Letrero",
+        "purpose": "Hero y encabezados de sección: Anton caps gigantes; una palabra delineada por bloque máximo."
+      },
+      "body": {
+        "displayName": "Cuerpo",
+        "purpose": "Archivo, máx ~68ch; texto secundario en mist."
+      },
+      "label": {
+        "displayName": "Etiqueta / Kicker",
+        "purpose": "Caps Archivo 650 con tracking 0.16–0.22em."
+      }
+    },
+    "shadows": [
+      {
+        "name": "console-glow",
+        "value": "0 30px 60px -20px rgba(0,0,0,0.7)",
+        "purpose": "Único levantado: la consola de operación del hero y la banda de contacto."
+      }
+    ],
+    "motion": [
+      {
+        "name": "rise-in",
+        "value": "0.7s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "purpose": "Entrada de bloques del hero y secciones (deshabilitada con prefers-reduced-motion)."
+      },
+      {
+        "name": "flow-dash",
+        "value": "0.9s linear infinite (stroke-dashoffset -16)",
+        "purpose": "Flujo animado de los conectores del pipeline en la consola."
+      },
+      {
+        "name": "pulse-soft",
+        "value": "1.6s ease-in-out infinite (opacity 1→0.35)",
+        "purpose": "LEDs de estado 'en vivo' — header, consola, flujos."
+      },
+      {
+        "name": "ticker-scroll",
+        "value": "32s linear infinite (translateX -50%)",
+        "purpose": "Marquesina de frentes de trabajo entre hero y servicios."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón WhatsApp",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Control de conversión; caps bold, esquina 2px, verde WhatsApp exclusivo de contactos.",
+      "html": "<a class=\"ds-btn-wa\" href=\"https://wa.me/\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2a9.93 9.93 0 0 0-8.6 14.98L2 22l5.2-1.36A9.94 9.94 0 1 0 12 2Z\"/></svg>Hablemos por WhatsApp</a>",
+      "css": ".ds-btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;background:#25d366;color:#06280f;border-radius:2px;font:700 .82rem/1 Archivo,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:.95rem 1.5rem;text-decoration:none;transition:background .18s ease-out,transform .18s ease-out}.ds-btn-wa:hover{background:#1db857}.ds-btn-wa:active{transform:translateY(1px)}.ds-btn-wa:focus-visible{outline:2px solid #2ee6e8;outline-offset:3px}"
+    },
+    {
+      "name": "Botón Ghost",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secundario: hairline 1px, texto cream, hover cian.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Ver cómo trabajamos<svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7\"/><path d=\"M9 7h8v8\"/></svg></a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;border:1px solid #232b34;background:transparent;color:#e8edf2;border-radius:2px;font:700 .82rem/1 Archivo,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:.95rem 1.5rem;text-decoration:none;transition:border-color .18s ease-out,color .18s ease-out,transform .18s ease-out}.ds-btn-ghost:hover{border-color:#2ee6e8;color:#2ee6e8}.ds-btn-ghost:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Chip con LED",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Feature chip tipo píldora con punto de color adelante.",
+      "html": "<span class=\"ds-chip\">Automatización</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;gap:.5rem;border:1px solid #232b34;background:#07090c;border-radius:999px;padding:.55rem 1rem;font:600 .78rem/1 Archivo,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#e8edf2;white-space:nowrap}.ds-chip::before{content:\"\";width:.45rem;height:.45rem;border-radius:999px;background:currentColor}"
+    },
+    {
+      "name": "Tarjeta de Servicio",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Tarjeta con sello circular, título Anton, checks cian y CTA-link superior.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-sello\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 12a8 8 0 1 1-2.34-5.66\"/><path d=\"M20 4v5h-5\"/></svg></div><h3 class=\"ds-card-title\">Automatización</h3><p class=\"ds-card-sub\">Los procesos que hoy hacen tus operarios, ahora corren solos.</p><ul class=\"ds-card-list\"><li class=\"ds-check\">Flujos RPA y orquestación</li></ul></article>",
+      "css": ".ds-card{background:linear-gradient(180deg,#121821,#0d1117);border:1px solid #232b34;border-radius:4px;padding:1.75rem}.ds-sello{display:inline-flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid #232b34;background:#07090c;color:#2ee6e8}.ds-card-title{font:400 1.7rem/.95 Anton,sans-serif;text-transform:uppercase;letter-spacing:-.005em;color:#e8edf2;margin:1.5rem 0 0}.ds-card-sub{color:#9aa7b4;font:400 .875rem/1.6 Archivo,sans-serif;margin:.6rem 0 0}.ds-card-list{list-style:none;padding:0;margin:1.5rem 0 0}.ds-check{display:flex;gap:.75rem;color:#e4e9ee;font:400 .875rem/1.5 Archivo,sans-serif}.ds-check::before{content:\"\";align-self:flex-start;width:1rem;height:1rem;margin-top:.1rem;background:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232ee6e8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>\") center/contain no-repeat}"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Link caps del header sticky; mist → cian en hover.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navegación principal\"><a href=\"#servicios\">Servicios</a><a href=\"#metodo\">Método</a><a href=\"#contacto\">Contacto</a></nav>",
+      "css": ".ds-nav{display:flex;gap:1.75rem}.ds-nav a{font:600 .78rem/1 Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:#9aa7b4;transition:color .15s ease-out}.ds-nav a:hover{color:#2ee6e8}.ds-nav a:focus-visible{outline:2px solid #2ee6e8;outline-offset:3px}"
+    },
+    {
+      "name": "Consola de Operación",
+      "kind": "custom",
+      "refersTo": "console",
+      "description": "La firma del hero: pipeline Pedidos→Motor IA→ERP con conectores animados, bar-chart cian y contador count-up.",
+      "html": "<div class=\"ds-console\" role=\"img\" aria-label=\"Simulación de panel de automatización\"><div class=\"ds-console-head\"><span class=\"ds-console-title\">operacion.monitoreo</span><span class=\"ds-console-live\"><i></i>En vivo</span></div><div class=\"ds-console-body\"><svg viewBox=\"0 0 212 168\" width=\"180\" height=\"140\" fill=\"none\" aria-hidden=\"true\"><rect x=\"12\" y=\"26\" width=\"70\" height=\"36\" rx=\"5\" stroke=\"#232b34\"/><rect x=\"146\" y=\"26\" width=\"54\" height=\"36\" rx=\"5\" stroke=\"#232b34\"/><rect x=\"62\" y=\"92\" width=\"96\" height=\"52\" rx=\"6\" stroke=\"#232b34\" fill=\"#161d26\"/><text x=\"47\" y=\"48\" text-anchor=\"middle\" fill=\"#e8edf2\" font-size=\"11\" font-weight=\"600\">Pedidos</text><text x=\"173\" y=\"48\" text-anchor=\"middle\" fill=\"#e8edf2\" font-size=\"11\" font-weight=\"600\">ERP</text><text x=\"110\" y=\"116\" text-anchor=\"middle\" fill=\"#e8edf2\" font-size=\"12\" font-weight=\"700\">Motor IA</text><rect x=\"92\" y=\"126\" width=\"36\" height=\"12\" rx=\"2\" fill=\"#ffc65c\"/><path d=\"M52 62 C52 78 74 80 82 92\" stroke=\"#2ee6e8\" stroke-width=\"1.6\" stroke-dasharray=\"6 10\"/></svg><p class=\"ds-console-num\"><span>1.284</span><i>Procesadas hoy</i></p></div></div>",
+      "css": ".ds-console{background:radial-gradient(120% 90% at 80% 0%,rgba(46,230,232,.1),transparent 55%),linear-gradient(180deg,#121821,#0d1117);border:1px solid #232b34;border-radius:6px;padding:1.25rem;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}.ds-console-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #171e26;padding-bottom:1rem}.ds-console-title{font:600 .68rem/1 Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#818ea0}.ds-console-live{display:inline-flex;align-items:center;gap:.4rem;font:700 .66rem/1 Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#2ee6e8}.ds-console-live i{width:.4rem;height:.4rem;border-radius:999px;background:#2ee6e8;animation:ds-pulse 1.6s ease-in-out infinite}.ds-console-num{display:flex;align-items:flex-end;justify-content:space-between;border-top:1px solid #171e26;margin-top:1.25rem;padding-top:1.15rem}.ds-console-num span{font:400 2.1rem/1 Anton,sans-serif;color:#e8edf2}.ds-console-num i{font:normal 600 .62rem/1 Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#818ea0}@keyframes ds-pulse{0%,100%{opacity:1}50%{opacity:.35}}@media (prefers-reduced-motion:reduce){.ds-console-live i{animation:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Letrero de la Bodega Encendido",
+    "overview": "Una landing oscura y enérgica que trata a la consultora como un cartel pintado a mano brillando en una calle de noche: fondo casi negro, titulares condensados gigantes en mayúsculas, kickers sobre cada sección, chips con punto de color, y una consola de operación viva que demuestra la automatización corriendo. La estética está fijada por el usuario tomando como referencia la landing de GiGi Energy Drink, ejecutada sobre contenido real de consultora: automatización, software a medida y data con IA, un solo socio.",
+    "keyCharacteristics": [
+      "Fondo casi negro con un solo acento cian eléctrico por región, no gradientes sobre texto.",
+      "Display condensado Anton en caps gigantes; una palabra por sección se delinea (text-outline).",
+      "Kickers caps con barra cian sobre cada sección (canon de la referencia fijada por el usuario).",
+      "Hairline borders #232b34 sobre #07090c; tarjetas #121821→#0d1117.",
+      "Chips pill con punto de color; botones primarios verde WhatsApp con tipografía caps bold.",
+      "Contenido de demostración del hero etiquetado como panel ilustrativo (synthetic).",
+      "Sin claims comerciales inventados: los números de beneficios son estructurales (1, 3, 24/7, 0)."
+    ],
+    "rules": [
+      {
+        "name": "The Noiseless Neon Rule",
+        "body": "El cian eléctrico es la única luz que se prende por sección: un acento por región, delimitado, nunca un resplandor difuso sobre el fondo.",
+        "section": "colors"
+      },
+      {
+        "name": "The WhatsApp Blueprint Rule",
+        "body": "El verde de WhatsApp solo existe en controles de contacto (botones). Si no se chatea desde ese control, ese verde no se usa en la página.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Faked Metrics Rule",
+        "body": "Los números grandes (1, 3, 24/7, 0) son hechos estructurales del servicio, no estadísticas inventadas.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sign Painter Rule",
+        "body": "Los displays viven en Anton y solo en mayúsculas; el énfasis se hace con tamaño y peso, nunca con itálica ni gradiente.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "En reposo, los controles son planos. El único levantado es el glow de la consola de operación.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar el negro #07090c como único fondo y un solo acento cian por sección.",
+      "Do escribir en español latino, en tuteo, directo.",
+      "Do reservar el verde WhatsApp solo para botones/links de contacto.",
+      "Do respetar prefers-reduced-motion: sin pulso, sin marquesina, sin count-up; el contador muestra el valor final directo.",
+      "Do mantener foco-visible cian y contraste AA.",
+      "Do marcar cualquier contenido de demostración como synthetic."
+    ],
+    "donts": [
+      "Don't inventar métricas de clientes, precios o resultados; los números grandes son solo hechos estructurales.",
+      "Don't usar gradientes sobre texto, sombras offset duras, o iconos emoji.",
+      "Don't usar más de un kicker por sección; el kicker es la excepción heredada de la referencia canónica, no una regla para todo el sistema.",
+      "Don't romper la columna del hero: Anton en clamp(2.75rem,7.2vw,5.5rem) no debe exceder la columna 1.05fr."
+    ]
+  }
+}

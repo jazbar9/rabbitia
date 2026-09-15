@@ -1,0 +1,42 @@
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Render conejo</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #fafafa;
+      }
+      #stage {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stage"></div>
+    <script>
+      import { mountConejoStudioShot } from "../three/ConejoStudioShot";
+
+      const container = document.querySelector("#stage");
+      if (container instanceof HTMLElement) {
+        const camOptions = Object.freeze(["front", "threequarter", "side"]);
+        const params = new URLSearchParams(window.location.search);
+        const requested = params.get("cam");
+        mountConejoStudioShot(
+          container,
+          camOptions.includes(requested) ? (requested as "front" | "threequarter" | "side") : "front",
+          { maskMaterial: params.get("mask") === "material" },
+        );
+      }
+    </script>
+  </body>
+</html>

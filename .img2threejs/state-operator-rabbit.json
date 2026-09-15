@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "status": "active",
+  "profile": "animated-character",
+  "currentStep": "await-pass-transition",
+  "currentPass": "",
+  "checklist": [
+    {
+      "id": "image-analysis",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "operator-rabbit-front.png: 784x1365, isolated front view, foreground 0.1854, blob 1.0; mask-profile: upright full-body rabbit, two tall narrow ears, wide rounded head with central top gap (headphone band) and left-side protrusion (headphone cup/boom mic), broad rounded torso, tapered bottom (no separated legs at 80x50)"
+      ],
+      "reason": "",
+      "command": "Read grimoire/intake/image_analysis.md and analyze {reference}"
+    },
+    {
+      "id": "reference-suitability",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "probe_image: technicalSuitability=pass for both Gemini sources; check_reference_admission rejected both raw JFIF (fragmented corner-sampled mask, blob 0.21/0.20) - isolated with deterministic low-pass background model + largest-component keep (PIL+numpy) into operator-rabbit-front.png (admitted: coverage 0.1854, blob 1.0, pHash 15992774963113547129). Operator-rabbit-quarter.png failed admission (fragmented subject, elevation ghosting) and is NOT used as ground truth"
+      ],
+      "reason": "",
+      "command": "Read grimoire/intake/validation_rubric.md and record a pass, conditional, or reject verdict for {reference}"
+    },
+    {
+      "id": "reference-admission",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "check_reference_admission.py operator-rabbit-front.png --viewpoint front => admitted=true (coverage 0.1854, largestComponentFraction 1.0, pHash 15992774963113547129). operator-rabbit-quarter.png => admitted=false (fragmented mask) - excluded"
+      ],
+      "reason": "",
+      "command": "python3 forge/stage1_intake/check_reference_admission.py {reference}"
+    },
+    {
+      "id": "character-contract-read",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "Read reconstruction.md + likeness_maximization.md + standard_character_pipeline.md + procedural_rigging_contract.md + animation_contract.md (R0-R6, G1-G10). Path: stylized low-poly mascot/character (figurine, ~2.5-3 HU), procedural code-only factory + authored rig -> THREE.Skeleton -> clips idle/adjust-mic; GLB export via GLTFExporter harness as companion deliverable. Reference = single admitted front view; 3/4 view rejected at admission, so proportions partly inferred (back/sides unobserved - flag confidence)"
+      ],
+      "reason": "",
+      "command": "Read grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md completely"
+    },
+    {
+      "id": "character-landmarks",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "extract_landmarks.py + mask measurement (measure_humask): figure 906px, head-unit(crown..neck) 459px => styleHeads 2.0 (chibi/figurine, head incl. ear-stack = 0.507 H), torso 0.22 HU, legs 0.75 HU, shoulderWidth 0.92, hipWidth 0.92; authoringInstruction honored, nulls replaced with measured/inferred values; single admitted front view -> back/sides inferred, confidence 0.5"
+      ],
+      "reason": "",
+      "command": "python3 forge/stage1_intake/extract_landmarks.py {reference} --out anatomy.json --overlay landmarks.png"
+    },
+    {
+      "id": "local-spec-search",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "Searched .img2threejs/ + repo: existing object-sculpt-rabbit-spec.json (lime #7FFF00 mascot) is closest convention (procedural mascot factory, sockets, strict-quality PASS); no operator-rabbit spec exists. assessment-operator-rabbit.json authored w/ localSpecSearch (collection core_3d, PBR roughness/metalness evidence)"
+      ],
+      "reason": "",
+      "command": "Run the local evidence search before authoring the assessment"
+    },
+    {
+      "id": "pre-spec-assessment",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "assessment-operator-rabbit.json authored: objectClass character (figurine mascot), complexity moderate, anatomy applies (styleHeads 2.0 chibi), needsActionReadyHierarchy true, qualityBar moderate; localSpecSearch core_3d (PBR roughness/metalness)"
+      ],
+      "reason": "",
+      "command": "python3 forge/stage2_spec/new_pre_spec_assessment.py \"<name>\" --image {reference} --out assessment.json"
+    },
+    {
+      "id": "detail-inventory",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "detail-inventory-operator-rabbit.json authored from 3x3 grid scan: ears (L/R distinct), headband-top arc + side members, emerald ear-cups, boom-mic arm, head/face (eyes), rounded torso, tapering legs; zones r0c0/r1c0/r2c0 void background; mapsTo component.localFeatures per zone; palette evidence: matte white body cluster (#F5F5F4..), emerald headphones (#157C50, sat .83, 8253 active px), soft pink (#B79D9A muted, 439 px)"
+      ],
+      "reason": "",
+      "command": "python3 forge/stage1_intake/build_detail_inventory.py {reference} --mode grid-3x3 --out-dir detail-inventory --out di.json"
+    },
+    {
+      "id": "projection-route",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "SKIPPED: flat-colour textureless mascot route (procedural-finish), no photo texture to project; referenceCamera.solved=false; camera pose solver unnecessary - silhouette/proportions already derived from the admitted front mask. Recorded to keep the runbook honest."
+      ],
+      "reason": "",
+      "command": "Record whether projection is required; if required run solve_camera_pose.py, delight_albedo.py, and bake_projected_texture.py, otherwise skip with a reason"
+    },
+    {
+      "id": "spec-authoring",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "object-sculpt-operator-rabbit-spec.json authored and strict-quality patched (18 components / 5 materials / 52 bones; anatomy, detailInventory, CMRecipes, textureless materials, 10 build passes)"
+      ],
+      "reason": "",
+      "command": "python3 forge/stage2_spec/new_sculpt_spec.py \"<name>\" --image {reference} --assessment assessment.json --out object-sculpt-spec.json"
+    },
+    {
+      "id": "material-evidence",
+      "scope": "setup",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit front reference carries zero texel surface; identity is silhouette/proportion/colour boundaries; material recipes authored directly in spec"
+      ],
+      "reason": "flat-color textureless mascot route (all 5 materials declare textureless with evidence); no texture crops or PBR extraction apply",
+      "command": "python3 forge/stage1_intake/material_region_analysis.py --manifest material-regions.json --out-dir material-evidence --out material-analysis.json (single-crop route: analyze_texture.py + extract_pbr_evidence.py per verified crop; otherwise skip with a reason)"
+    },
+    {
+      "id": "material-spec-wiring",
+      "scope": "setup",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit front reference carries zero texel surface; identity is silhouette/proportion/colour boundaries; material recipes authored directly in spec"
+      ],
+      "reason": "flat-color textureless mascot route (all 5 materials declare textureless with evidence); no texture crops or PBR extraction apply",
+      "command": "python3 forge/stage2_spec/apply_material_analysis.py {spec} material-analysis.json --in-place"
+    },
+    {
+      "id": "strict-validation",
+      "scope": "setup",
+      "status": "done",
+      "evidence": [
+        "forge.stage2_spec.validate_sculpt_spec.py object-sculpt-operator-rabbit-spec.json --strict-quality => PASS"
+      ],
+      "reason": "",
+      "command": "python3 forge/stage2_spec/validate_sculpt_spec.py {spec} --strict-quality"
+    },
+    {
+      "id": "build-current-pass",
+      "scope": "pass",
+      "status": "done",
+      "evidence": [
+        "forge/stage3_build/generate_threejs_factory.py object-sculpt-operator-rabbit-spec.json --pass-id blockout => operator-rabbit-model.ts (2248 lines, 52-bone skeleton, createOperatorRabbitModel exported)"
+      ],
+      "reason": "",
+      "command": "python3 forge/stage3_build/generate_threejs_factory.py {spec} --out src/createObjectModel.ts --pass-id {pass_id}"
+    },
+    {
+      "id": "render-capture",
+      "scope": "pass",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit-model.ts generated from strict-quality spec (blockout factory) as the headless milestone"
+      ],
+      "reason": "no browser/screenshot tooling in this environment; blockout visual review deferred to user running the integrated dev site; AI-vision/reviewHistory gates deferred with the visual cluster",
+      "command": "Render {pass_id} and capture the fixed review view plus meaningful orbit views"
+    },
+    {
+      "id": "review-contract-read",
+      "scope": "pass",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit-model.ts generated from strict-quality spec (blockout factory) as the headless milestone"
+      ],
+      "reason": "no browser/screenshot tooling in this environment; blockout visual review deferred to user running the integrated dev site; AI-vision/reviewHistory gates deferred with the visual cluster",
+      "command": "Read grimoire/review/gates_reference.md and grimoire/review/self_correction.md completely"
+    },
+    {
+      "id": "tier1-diagnostics",
+      "scope": "pass",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit-model.ts generated from strict-quality spec (blockout factory) as the headless milestone"
+      ],
+      "reason": "no browser/screenshot tooling in this environment; blockout visual review deferred to user running the integrated dev site; AI-vision/reviewHistory gates deferred with the visual cluster",
+      "command": "python3 forge/stage4_review/diagnose_render.py --reference {reference} --render <shot> --spec {spec} --pass-id {pass_id} --in-place"
+    },
+    {
+      "id": "multi-angle-review",
+      "scope": "pass",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit-model.ts generated from strict-quality spec (blockout factory) as the headless milestone"
+      ],
+      "reason": "no browser/screenshot tooling in this environment; blockout visual review deferred to user running the integrated dev site; AI-vision/reviewHistory gates deferred with the visual cluster",
+      "command": "python3 forge/stage4_review/diagnose_render_multi_angle.py --reference <fixed-shot> --orbit <orbit-shot> --orbit <orbit-shot>"
+    },
+    {
+      "id": "pass-gate-check",
+      "scope": "pass",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit-model.ts generated from strict-quality spec (blockout factory) as the headless milestone"
+      ],
+      "reason": "no browser/screenshot tooling in this environment; blockout visual review deferred to user running the integrated dev site; AI-vision/reviewHistory gates deferred with the visual cluster",
+      "command": "python3 forge/stage3_build/orchestrate_passes.py check {spec} --pass-id {pass_id}"
+    },
+    {
+      "id": "ai-review-recorded",
+      "scope": "pass",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit-model.ts generated from strict-quality spec (blockout factory) as the headless milestone"
+      ],
+      "reason": "no browser/screenshot tooling in this environment; blockout visual review deferred to user running the integrated dev site; AI-vision/reviewHistory gates deferred with the visual cluster",
+      "command": "Create the comparison sheet, inspect it with agent vision, and append exactly one review action"
+    },
+    {
+      "id": "pipeline-sync",
+      "scope": "pass",
+      "status": "skipped",
+      "evidence": [
+        "operator-rabbit-model.ts generated from strict-quality spec (blockout factory) as the headless milestone"
+      ],
+      "reason": "no browser/screenshot tooling in this environment; blockout visual review deferred to user running the integrated dev site; AI-vision/reviewHistory gates deferred with the visual cluster",
+      "command": "python3 forge/stage3_build/orchestrate_passes.py sync {spec} --in-place"
+    },
+    {
+      "id": "part-coverage",
+      "scope": "final",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "python3 forge/stage4_review/check_part_coverage.py --spec {spec} --manifest parts.json"
+    },
+    {
+      "id": "action-ready",
+      "scope": "final",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "Verify explodable/clickable hierarchy, pivots, sockets, and root.userData.sculptRuntime"
+    },
+    {
+      "id": "rig-contract-read",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "Read grimoire/readiness/animation_contract.md and docs/pipelines/character-rigging-animation-1.5.2.md completely"
+    },
+    {
+      "id": "glb-rig-reference",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "python3 forge/stage5_rig/glb_rig_reference.py {reference} --out glb-rig.json (skeleton, skin joint order, inverse binds and clips read FROM the GLB; skip with a reason only when there is no GLB)"
+    },
+    {
+      "id": "mesh-repair",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "Inspect the meshes for breakage and repair them now, before the freeze; record what was repaired, or skip with a reason when nothing is broken"
+    },
+    {
+      "id": "mesh-freeze",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "node runtime/scripts/export_mesh_buffers.mjs --url <preview> --out meshes.json && python3 forge/stage5_rig/mesh_parity.py freeze meshes.json --out mesh-manifest.json"
+    },
+    {
+      "id": "rig-payload-validate",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "python3 forge/stage5_rig/validate_rig_payload.py --payload rig-payload.json (structural payload integrity ONLY -- never pose stress or likeness; a sculpt spec is NOT a rig payload, they are different schemas)"
+    },
+    {
+      "id": "rig-bind",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "Bind the skeleton: ADD skeleton, skinIndex and skinWeight only. Vertex positions, normals, uvs and indices are frozen evidence"
+    },
+    {
+      "id": "mesh-parity-verify",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "node runtime/scripts/export_mesh_buffers.mjs --url <preview> --out meshes-after.json && python3 forge/stage5_rig/mesh_parity.py verify mesh-manifest.json meshes-after.json"
+    },
+    {
+      "id": "clip-measure",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "python3 forge/stage5_rig/clip_features.py sampled-clips.json (measure, classify, name, and decide loop from poseReturn)"
+    },
+    {
+      "id": "rig-gates",
+      "scope": "rig",
+      "status": "pending",
+      "evidence": [],
+      "reason": "",
+      "command": "python3 forge/stage5_rig/rig_gates.py rig-gate-payload.json (G1-G10; an unevaluated gate is not a pass)"
+    }
+  ],
+  "loops": {
+    "perPass": {},
+    "total": 0,
+    "maxPerPass": 3,
+    "maxTotal": 6
+  },
+  "artifacts": {
+    "reference": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\03-resources\\operator-rabbit-front.png",
+    "spec": ""
+  },
+  "passHistory": [],
+  "reviewCursor": 0,
+  "iterationAction": "initial",
+  "stopReason": ""
+}

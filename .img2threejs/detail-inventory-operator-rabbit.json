@@ -1,0 +1,191 @@
+{
+  "sourceImage": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\03-resources\\operator-rabbit-front.png",
+  "zonesDir": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 8,
+    "details": [
+      {
+        "id": "zone-r0c0",
+        "kind": "void/background",
+        "description": "Top-left corner; subject x-range starts at 0.384 of image width, so this zone is background (transparent in isolated PNG)",
+        "region": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "n/a",
+        "affects": "none",
+        "mapsTo": {
+          "type": "none",
+          "ref": ""
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r0c0.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "zone-r0c1",
+        "kind": "ear-stack-left",
+        "description": "Left tall narrow ear rising from crown; inner-ear soft pink on inward face; headphone band top arc visible above/behind crown between the two ears",
+        "region": {
+          "x": 0.3333,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "two ears ~0.5 H combined (ear-stack from crown to tips at image y0=27..~noseBand)",
+        "affects": "head-earLeft topology, headphone-band crown arc",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "ears-left + headphone-band"
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r0c1.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "zone-r0c2",
+        "kind": "ear-stack-right + band apex",
+        "description": "Right tall narrow ear and the headphone band apex that straddles the crown gap between the two ears; emerald band color",
+        "region": {
+          "x": 0.6667,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "band arc ~0.35 head-width; ear right ~0.47 H from figure top",
+        "affects": "head-earRight topology, headphone-band arc and sockets",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "ears-right + headphone-band"
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r0c2.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "zone-r1c0",
+        "kind": "void/background",
+        "description": "Left-middle; subject x-range starts at 0.384 (left shoulder cup starts ~0.42), so background",
+        "region": {
+          "x": 0.0,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "n/a",
+        "affects": "none",
+        "mapsTo": {
+          "type": "none",
+          "ref": ""
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r1c0.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "zone-r1c1",
+        "kind": "head-front/torso-upper",
+        "description": "Wide rounded head: white matte face, dark eyes region, headphone band sides running down to emerald ear-cups; below, the broad rounded torso begins to widen",
+        "region": {
+          "x": 0.3333,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "head width ~0.34 head-unit; shoulder width ~ head width",
+        "affects": "head volume, face eyes, headphone-band side members, torso-upper",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "head + headphone-band + torso"
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r1c1.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "zone-r1c2",
+        "kind": "head-right + headphones + boom mic",
+        "description": "Right edge of head where emerald ear-cup sits; boom mic arm sweeps down toward the chin; deepest emerald accents (#157C50 mean rgb 18,96,61 cluster)",
+        "region": {
+          "x": 0.6667,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "cup ~0.18 head-width; mic arm ~0.3 H length from cup to mouth",
+        "affects": "head-cup-right, boom-mic arm + mic head",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "headphone-cup-right + boom-mic"
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r1c2.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "zone-r2c0",
+        "kind": "void/background",
+        "description": "Bottom-left; below subject, background",
+        "region": {
+          "x": 0.0,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "n/a",
+        "affects": "none",
+        "mapsTo": {
+          "type": "none",
+          "ref": ""
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r2c0.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "zone-r2c1",
+        "kind": "torso-bottom-left/legs",
+        "description": "Broad rounded torso tapering; legs short/stubby, no separation at this resolution; foot contact near figure floor",
+        "region": {
+          "x": 0.3333,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "legs ~0.75 HU (measured); torso 0.22 HU below waist",
+        "affects": "torso-bottom, legs-set, root/feet contacts",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "torso + legs"
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r2c1.png",
+        "confidence": 0.6
+      },
+      {
+        "id": "zone-r2c2",
+        "kind": "torso-bottom-right/legs",
+        "description": "Right side of the tapered torso/leg block; rounded feet base",
+        "region": {
+          "x": 0.6667,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "leg block ~0.28 H height",
+        "affects": "torso-bottom, legs-set, actionReady roots",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "torso + legs"
+        },
+        "evidenceRef": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\.img2threejs\\detail-operator\\zone-r2c2.png",
+        "confidence": 0.6
+      }
+    ]
+  },
+  "authoringInstruction": "Open each zone crop under zonesDir and replace every detail stub's kind, description, scale, affects, mapsTo, and confidence with what is actually observed. Add more detail entries per zone if a single zone contains multiple distinct marks; do not leave stubs unfilled or unlinked (mapsTo must reference a real component.localFeatures or material.localOverrides entry)."
+}

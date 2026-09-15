@@ -1,0 +1,139 @@
+---
+import Icon from "./Icon.astro";
+
+const beneficios = [
+	{
+		n: "1",
+		color: "lime",
+		label: "Socio único",
+		desc: "Para todo el viaje: un mismo equipo, una misma conversación.",
+		icon: "zap",
+	},
+	{
+		n: "3",
+		color: "flame",
+		label: "Frentes",
+		desc: "Automatización, software y data con IA de punta a punta.",
+		icon: "flame",
+	},
+	{
+		n: "24/7",
+		color: "aqua",
+		label: "Operación",
+		desc: "Tus procesos corren aunque nadie esté mirando.",
+		icon: "brain",
+	},
+	{
+		n: "0",
+		color: "lime",
+		label: "Humo",
+		desc: "Pilotos reales antes de escalar: lo ves funcionando con tus datos.",
+		icon: "sparkles",
+	},
+];
+
+const colores = {
+	lime: {
+		hex: "#AFFF00",
+		texto: "text-lime",
+		caja: "bg-lime/20",
+		lleno: "bg-lime",
+		barra: "bg-lime",
+		glow: "linear-gradient(135deg, #AFFF0040, transparent, #AFFF0040)",
+	},
+	flame: {
+		hex: "#FF6B35",
+		texto: "text-flame",
+		caja: "bg-flame/20",
+		lleno: "bg-flame",
+		barra: "bg-flame",
+		glow: "linear-gradient(135deg, #FF6B3540, transparent, #FF6B3540)",
+	},
+	aqua: {
+		hex: "#00D4FF",
+		texto: "text-aqua",
+		caja: "bg-aqua/20",
+		lleno: "bg-aqua",
+		barra: "bg-aqua",
+		glow: "linear-gradient(135deg, #00D4FF40, transparent, #00D4FF40)",
+	},
+};
+---
+
+<section
+	id="beneficios"
+	class="relative scroll-mt-0 overflow-hidden bg-ink py-16 md:py-24"
+	aria-labelledby="beneficios-title"
+>
+	<div
+		class="absolute inset-0 bg-gradient-to-b from-ink via-coal to-ink"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative z-10 mx-auto w-full max-w-5xl px-6">
+		<div class="mb-10 text-center" data-reveal>
+			<span class="kicker text-lime">Por qué un solo socio</span>
+			<div class="mt-2 overflow-hidden">
+				<h2
+					id="beneficios-title"
+					class="display lines text-3xl tracking-tight text-white md:text-4xl"
+				>
+					<span class="line"><span>Qué cambia</span></span>
+					<span class="line"><span class="text-lime">con un socio así</span></span>
+				</h2>
+			</div>
+			<div
+				class="mx-auto mt-3 h-[2px] w-12 rounded-full bg-lime"
+				aria-hidden="true"
+			></div>
+		</div>
+
+		<div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+			{beneficios.map((b, i) => {
+				const c = colores[b.color as keyof typeof colores];
+				return (
+					<div
+						class="group relative cursor-pointer"
+						data-reveal
+						class:list="reveal-card"
+						style={`--rd: ${i * 0.1}s`}
+					>
+						<div
+							class="pointer-events-none absolute -inset-[1px] rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+							style={`background:${c.glow};filter:blur(8px)`}
+							aria-hidden="true"
+						></div>
+						<div
+							class="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-char p-5"
+						>
+							<div class="relative z-10 flex h-full min-h-[150px] flex-col">
+								<div
+									class={`relative mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${c.caja}`}
+								>
+									<div
+										class={`absolute inset-0 scale-75 rounded-xl ${c.lleno} opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100`}
+										aria-hidden="true"
+									></div>
+									<span class={`relative z-10 ${c.texto} transition-colors duration-300 group-hover:text-ink`}>
+										<Icon name={b.icon} />
+									</span>
+								</div>
+								<div class="flex-1">
+									<div class="display pop text-3xl tracking-tight text-white" data-reveal>
+										<span style={`color:${c.hex}`}>{b.n}</span>
+									</div>
+									<h3 class="mt-1 text-sm font-semibold text-white">{b.label}</h3>
+									<p class="mt-1 font-mono text-xs text-white/50">{b.desc}</p>
+								</div>
+								<div
+									class={`mt-4 h-[2px] origin-left scale-x-0 rounded-full transition-transform duration-500 group-hover:scale-x-100 ${c.barra}`}
+									aria-hidden="true"
+								></div>
+							</div>
+						</div>
+					</div>
+				);
+			})}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../lib/site";
+
+interface Props {
+	title?: string;
+	description?: string;
+	ogImage?: string;
+}
+
+const {
+	title = `${SITE.name} — Automatización, Software y Data con IA`,
+	description = "Consultora tecnológica integral: automatización de procesos, software a medida y datos potenciados con IA. Un solo socio para dejar de operar a mano.",
+	ogImage = `${SITE.url}/rabbit.png`,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" href="/rabbit.png" />
+		<link rel="apple-touch-icon" href="/rabbit.png" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="theme-color" content="#AFFF00" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap"
+			rel="stylesheet"
+		/>
+		<noscript>
+			<style>
+				[data-reveal] {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+				.lines .line > span {
+					transform: none !important;
+				}
+			</style>
+		</noscript>
+	</head>
+	<body>
+		<Header />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer />
+		<script>
+			const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const targets = document.querySelectorAll("[data-reveal], .lines");
+
+			if (reduce) {
+				targets.forEach((el) => el.classList.add("is-in"));
+			} else {
+				const io = new IntersectionObserver(
+					(entries) => {
+						for (const en of entries) {
+							if (en.isIntersecting) {
+								en.target.classList.add("is-in");
+								io.unobserve(en.target);
+							}
+						}
+					},
+					{ threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+				);
+				targets.forEach((el) => io.observe(el));
+			}
+		</script>
+	</body>
+</html>

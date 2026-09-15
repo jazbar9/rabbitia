@@ -1,0 +1,105 @@
+---
+import Icon from "./Icon.astro";
+
+const serviciosHome = [
+	{
+		titulo: "Automatización",
+		sub: "Los procesos que hoy hacen tus operarios, ahora corren solos, 24/7 y con registro.",
+		detalles: [
+			"Flujos RPA y orquestación de tareas",
+			"Agentes de IA sobre tus herramientas",
+			"Control y trazabilidad de cada paso",
+		],
+		icon: "ciclo",
+		link: "/servicios/automatizacion-software",
+	},
+	{
+		titulo: "Software a medida",
+		sub: "Tu operación convertida en producto: rápido, integrado y mantenible.",
+		detalles: [
+			"Plataformas y apps web a medida",
+			"Integración con ERP, APIs y herramientas",
+			"Entrega por etapas, sin proyectos infinitos",
+		],
+		icon: "ventana",
+		link: "/servicios/automatizacion-software",
+	},
+	{
+		titulo: "Data & IA",
+		sub: "Decidís con números en tiempo real, no con intuición.",
+		detalles: [
+			"Pipelines de datos y consolidación",
+			"Tableros de gestión y reportes automáticos",
+			"Modelos de IA para predecir y anticipar",
+		],
+		icon: "dato",
+		link: "/servicios/datos",
+	},
+];
+---
+
+<section
+	id="servicios"
+	class="relative scroll-mt-28 overflow-hidden bg-white py-16 md:py-24"
+	aria-labelledby="servicios-title"
+>
+	<div
+		class="pointer-events-none absolute inset-0 bg-[#f3f3e0]"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative z-10 mx-auto w-full max-w-7xl px-6">
+		<div class="text-center" data-reveal>
+			<span class="kicker text-ink/60">Nuestros servicios</span>
+			<h2
+				id="servicios-title"
+				class="display mt-2 text-3xl text-ink md:text-5xl"
+			>
+				<span class="lines">
+					<span class="line"><span>Un socio,</span></span>
+					<span class="line"><span class="text-lemon">tres frentes</span></span>
+				</span>
+			</h2>
+			<p
+				class="mx-auto mt-2 max-w-xl font-mono text-sm text-ink/60"
+				data-reveal
+				style="--rd: 0.2s"
+			>
+				Elegís el punto de inicio. Nosotros cubrimos todo el recorrido con un mismo
+				equipo, un mismo estándar y una sola conversación.
+			</p>
+		</div>
+
+		<div class="mt-12 grid gap-6 md:grid-cols-3">
+			{serviciosHome.map((s, i) => (
+				<article
+					class="group flex flex-col rounded-[1.5rem] border-2 border-ink/10 bg-white p-6 shadow-xl transition-all duration-300 hover:border-ink/30 reveal-card md:p-8"
+					data-reveal
+					style={`--rd: ${i * 0.12}s`}
+				>
+					<div
+						class="flex h-11 w-11 items-center justify-center rounded-xl bg-lime text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-lime"
+						aria-hidden="true"
+					>
+						<Icon name={s.icon} />
+					</div>
+					<h3 class="display mt-5 text-3xl tracking-tight text-ink">{s.titulo}</h3>
+					<p class="mt-2 font-mono text-sm text-ink/60">{s.sub}</p>
+					<ul class="mt-5 flex flex-wrap gap-2">
+						{s.detalles.map((d) => (
+							<li class="rounded-full bg-ink/5 px-2.5 py-1 font-mono text-xs text-ink/60">
+								{d}
+							</li>
+						))}
+					</ul>
+<a
+					href={s.link}
+					class="btn btn-lime shine mt-7 w-full !py-3 !text-sm md:w-auto"
+				>
+					Cotizar este servicio
+				</a>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

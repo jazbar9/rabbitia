@@ -1,0 +1,28 @@
+---
+const palabras = [
+	"Automatización",
+	"Software a medida",
+	"Datos & analítica",
+	"IA aplicada",
+	"Integraciones",
+	"Procesos 24/7",
+];
+---
+
+<section class="overflow-hidden bg-ink py-4" aria-label="Frentes de trabajo">
+	<div class="marquee-track flex w-max items-center gap-8 whitespace-nowrap will-change-transform">
+		{[0, 1].map((copy) => (
+			<div
+				class="flex items-center gap-8"
+				aria-hidden={copy === 1 ? "true" : undefined}
+			>
+				{palabras.map((p) => (
+					<>
+						<span class="display text-lg text-white/70 md:text-xl">{p}</span>
+						<span class="h-1.5 w-1.5 rotate-45 bg-lime" aria-hidden="true"></span>
+					</>
+				))}
+			</div>
+		))}
+	</div>
+</section>

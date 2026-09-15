@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Ticker from "../components/Ticker.astro";
+import Services from "../components/Services.astro";
+import Method from "../components/Method.astro";
+import Benefits from "../components/Benefits.astro";
+import Audiences from "../components/Audiences.astro";
+import Contact from "../components/Contact.astro";
+import { SITE } from "../lib/site";
+
+const title = `${SITE.name} — Automatización, Software y Data con IA`;
+const desc =
+	"Consultora tecnológica integral: automatización de procesos, software a medida y datos potenciados con IA. Un solo socio para dejar de operar a mano.";
+---
+
+<Layout title={title} description={desc}>
+	<Hero />
+	<Ticker />
+	<Services />
+	<Method />
+	<Benefits />
+	<Audiences />
+	<Contact />
+</Layout>

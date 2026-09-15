@@ -1,0 +1,371 @@
+{
+  "targetName": "RabbitIA Rabbit Fullbody",
+  "sourceImage": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\public\\rabbit.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "full-body-mascot",
+      "primaryDomain": "character",
+      "formLanguage": [
+        "geometric",
+        "rounded-organic",
+        "stylized-cartoon"
+      ],
+      "structureKind": [
+        "branching hierarchy",
+        "repeated modules"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "appendage articulation (ears/legs)"
+      ],
+      "materialFamilies": [
+        "plastic"
+      ],
+      "notes": "Ground truth from public/rabbit.png (540x540, AR 1.0, transparent bg, admitted). deterministic mask-profile (analyze_mask.py) + extract_part_color_recipe.py: full-body upright rabbit — two ears (left broader/shorter outcurve, right narrower/taller, slightly tilted inward), rounded head, wide rounded torso (widest ~mid height), two legs tapering to feet. dominant albedo lime rgba(127,255,0,1) = #7FFF00 (brand lime ladder), secondary cream rgba(243,243,223,1), materialClass plastic conf 0.6, roughnessEstimate 0.133 (glossy/satin, tight specular hotspot). primaryDomain=character (brand mascot). Influence: mask-verified geometry + user confirmation (full-body rabbit, palette from rabbit.png)."
+    },
+    "complexity": {
+      "tier": "moderate",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 2,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 1,
+        "materialLayerCount": 1,
+        "localDetailDensity": 1,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 2,
+        "mesoComponents": 4,
+        "microFeatureGroups": 2,
+        "materialLayers": 2,
+        "repetitionSystems": 0
+      },
+      "reasoning": [
+        "Two macro assemblies: upper body (head+ears) and lower body (torso+legs/feet).",
+        "Meso: head, ear-left, ear-right, torso, legs/feet.",
+        "Two material layers: lime accent body + cream accents (inner ear/face marks read from cream secondary).",
+        "Asymmetric ear pair is a defining identity detail."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "moderate",
+      "minimumComponentLevels": [
+        "macro",
+        "meso"
+      ],
+      "needsRepetitionSystems": false,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Full-body mascot with branching appendages (ears, legs) needs socketed attachment contracts and a reviewable multi-view render loop."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Exact ear height/outcurve ratio between left and right ear tips"
+    ],
+    "detailInventory": [
+      {
+        "id": "detail-ear-right-tall",
+        "kind": "contour",
+        "name": "Right ear taller, narrow, near-straight, leaning slightly inward",
+        "mapsTo": {
+          "ref": "ear-right"
+        },
+        "evidenceRefs": [
+          "rabbit-mask"
+        ]
+      },
+      {
+        "id": "detail-ear-left-short",
+        "kind": "contour",
+        "name": "Left ear shorter, broader, outcurved",
+        "mapsTo": {
+          "ref": "ear-left"
+        },
+        "evidenceRefs": [
+          "rabbit-mask"
+        ]
+      },
+      {
+        "id": "detail-head-rounded",
+        "kind": "contour",
+        "name": "Rounded head mass merging ears into jaw",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "head/head-rounded-mass"
+        },
+        "evidenceRefs": [
+          "rabbit-mask"
+        ]
+      },
+      {
+        "id": "detail-torso-wide",
+        "kind": "contour",
+        "name": "Wide rounded torso widest at mid height",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "torso/torso-belly-swell"
+        },
+        "evidenceRefs": [
+          "rabbit-mask"
+        ]
+      },
+      {
+        "id": "detail-arm-stub-left",
+        "kind": "contour",
+        "name": "Small left arm/paw stub overlapping the torso side",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "arm-stub-left/arm-stub-left"
+        },
+        "evidenceRefs": [
+          "rabbit-mask"
+        ]
+      },
+      {
+        "id": "detail-legs-separated",
+        "kind": "contour",
+        "name": "Two separated legs tapering to feet",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "leg-l/leg-tapering-foot"
+        },
+        "evidenceRefs": [
+          "rabbit-mask"
+        ]
+      }
+    ],
+    "anatomy": {
+      "applies": true,
+      "styleHeads": 2.4,
+      "proportions": {
+        "headUnit": 2.4,
+        "torso": 2.6,
+        "legs": 2.0,
+        "shoulderWidth": 1.6,
+        "hipWidth": 1.7
+      },
+      "pose": {
+        "type": "standing-upright",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [
+        "ear-left: broader, shorter, outcurved",
+        "ear-right: narrower, taller, straighter"
+      ],
+      "confidence": 0.6,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Style-height mascot proportions estimated from mask bands; face landmarks not resolvable from the flat mask profile."
+    },
+    "sourceImage": "C:\\Users\\DELL\\Desktop\\RABBIT IA\\02-repo\\public\\rabbit.png"
+  },
+  "qualityContract": {
+    "qualityBar": "moderate",
+    "definitionOfDone": [
+      "The rendered model matches the reference silhouette, primary proportions, visible component hierarchy, material response, and most recognizable local features for the selected fidelity tier."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 2,
+      "mesoComponents": 3,
+      "microFeatureGroups": 2,
+      "materialLayers": 2,
+      "repetitionSystems": 0,
+      "reviewViewpoints": 3
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "RabbitIA Rabbit Fullbody rabbit full body ears head torso legs mascot sculpt",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "ac4f0bc9028e34083dbb5d5531ae3df7699c8e7641d5f8e6d42e7492ea1be1d0"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-cylindergeometry-barrels-round-components",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[4]",
+        "score": 3.752966399396,
+        "snippets": [
+          "... có tiết diện tròn dạng nòng. Recognition cues: Long uniform-cross-section round part (barrel, suppressor, muzzle brake body, cleaning rod, magazine tube) Dấu hiệu nhận diện: Bộ phận tròn có tiết diện đều dài (nòng súng, ống giảm thanh, ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.pbr-opacity-alpha",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[8]",
+        "score": 2.637270505976,
+        "snippets": [
+          "... được tái sử dụng làm kênh dữ liệu, không phải độ trong suốt. Recognition cues: Standard opacity: soft edge fade or full transparency in glass/plastic parts; CS2-specific: alpha channel of the base color texture instead encodes a ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[8]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.pbr-hand-painted-vs-pbr-texture",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[12]",
+        "score": 2.248837934095,
+        "snippets": [
+          "... mô (lỗ chân lông, vết xước) có bóng đổ theo hướng từ normal/roughness map Three.js target: Hand-painted → single .map (baked lighting, SRGBColorSpace); PBR → full MeshPhysicalMaterial channel set (map/normalMap/roughnessMap/metalnessMap/aoMap)"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[12]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

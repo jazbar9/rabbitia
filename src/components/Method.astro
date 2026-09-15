@@ -1,0 +1,114 @@
+---
+import Icon from "./Icon.astro";
+import { WA_LINK } from "../lib/site";
+
+const pasos = [
+	{
+		n: "01",
+		titulo: "Diagnóstico",
+		desc: "Auditamos tu proceso de punta a punta y te devolvemos un mapa claro: dónde se pierde tiempo, plata y gente.",
+		tag: "1 semana",
+		icon: "punto",
+	},
+	{
+		n: "02",
+		titulo: "Piloto",
+		desc: "Montamos una punta del proceso corriendo en tu entorno, con tus datos. Lo ves funcionar antes de comprometer nada.",
+		tag: "semanas",
+		icon: "ciclo",
+	},
+	{
+		n: "03",
+		titulo: "Escala",
+		desc: "Desplegamos al resto de la operación, entrenamos a tu equipo y nos quedamos cerca con soporte.",
+		tag: "continuo",
+		icon: "lineas",
+	},
+];
+---
+
+<section
+	id="metodo"
+	class="relative scroll-mt-0 overflow-hidden bg-white py-16 md:py-24"
+	aria-labelledby="metodo-title"
+>
+	<div class="mx-auto w-full max-w-7xl px-6">
+		<div class="text-center" data-reveal>
+			<span class="kicker text-ink/60">Cómo trabajamos</span>
+			<h2 id="metodo-title" class="display mt-2 text-3xl text-ink md:text-5xl">
+				<span class="lines">
+					<span class="line"><span>Del problema</span></span>
+					<span class="line"><span class="text-lime">a la máquina</span></span>
+				</span>
+			</h2>
+			<p
+				class="mx-auto mt-2 max-w-xl font-mono text-sm text-ink/60"
+				data-reveal
+				style="--rd: 0.2s"
+			>
+				Un camino probado, sin PowerPoint de 80 diapositivas ni proyectos de un año.
+			</p>
+		</div>
+
+		<div class="mt-12 grid gap-4 md:grid-cols-3">
+			{pasos.map((p, i) => (
+				<article
+					class="group relative cursor-pointer overflow-hidden rounded-2xl bg-ink p-6 transition-all duration-300"
+					data-reveal
+					class:list="reveal-card"
+					style={`--rd: ${i * 0.12}s`}
+				>
+					<div
+						class="absolute inset-0 bg-lime/0 transition-colors duration-300 group-hover:bg-lime"
+						aria-hidden="true"
+					></div>
+					<div class="relative z-10">
+						<div class="mb-4 flex items-center justify-between">
+							<div
+								class="flex h-11 w-11 items-center justify-center rounded-xl bg-lime text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-lime"
+								aria-hidden="true"
+							>
+								<Icon name={p.icon} />
+							</div>
+							<span
+								class="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-mono text-[0.62rem] text-white/70 transition-colors duration-300 group-hover:bg-ink/10 group-hover:text-ink/70"
+							>
+								{p.n} · {p.tag}
+							</span>
+						</div>
+						<h3
+							class="display mb-2 text-lg tracking-tight text-white transition-colors duration-300 group-hover:text-ink"
+						>
+							{p.titulo}
+						</h3>
+						<p
+							class="mb-4 font-mono text-xs leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-ink/60"
+						>
+							{p.desc}
+						</p>
+						<a
+							href={WA_LINK}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex items-center gap-2 text-xs font-bold tracking-wide text-lime transition-colors duration-300 group-hover:text-ink"
+						>
+							Ver este paso tuyo
+							<svg
+								viewBox="0 0 24 24"
+								class="h-3 w-3"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+							>
+								<path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+							</svg>
+						</a>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

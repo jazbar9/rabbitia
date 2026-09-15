@@ -1,0 +1,94 @@
+---
+import { SITE } from "../lib/site";
+import { servicios } from "../lib/services";
+
+const columnas = [
+	{
+		titulo: "Servicios",
+		links: [
+			{ label: "Todos los servicios", href: "/servicios" },
+			...servicios.map((s) => ({ label: s.titulo, href: `/servicios/${s.slug}` })),
+		],
+	},
+	{
+		titulo: "Empresa",
+		links: [
+			{ label: "Cómo trabajamos", href: "/#metodo" },
+			{ label: "Beneficios", href: "/#beneficios" },
+			{ label: "Para quién", href: "/#para-quien" },
+		],
+	},
+	{
+		titulo: "Legal",
+		links: [
+			{ label: "Privacidad", href: "#" },
+			{ label: "Términos", href: "#" },
+			{ label: "Cookies", href: "#" },
+		],
+	},
+];
+---
+
+<footer class="relative overflow-hidden bg-ink pt-10 pb-4" aria-label="Pie de página">
+	<div class="mx-auto w-full max-w-7xl px-6">
+		<p
+			class="mx-auto max-w-xl text-center font-mono text-xs leading-relaxed text-white/60"
+			data-reveal
+		>
+			{SITE.name} es una consultora tecnológica integral: automatización de procesos,
+			software a medida y datos, todo potenciado con IA. Un solo socio para que tu
+			operación corra sola.
+		</p>
+
+		<div
+			class="grid grid-cols-2 gap-6 border-t border-white/10 py-8 md:grid-cols-3"
+			data-reveal
+			style="--rd: 0.15s"
+		>
+			{columnas.map((c) => (
+				<nav aria-label={c.titulo}>
+					<h4 class="mb-3 text-sm font-bold text-white">{c.titulo}</h4>
+					<ul class="space-y-2">
+						{c.links.map((l) => (
+							<li>
+								<a
+									href={l.href}
+									class="inline-block font-mono text-xs text-white/60 transition-colors hover:text-lime"
+								>
+									{l.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			))}
+		</div>
+
+		<div
+			class="flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 md:flex-row"
+			data-reveal
+			style="--rd: 0.25s"
+		>
+			<span class="text-xl font-black tracking-tight">
+				<span class="text-white">Rabbit</span><span class="text-lime">IA</span>
+			</span>
+			<p class="font-mono text-xs text-white/40">
+				© 2026 {SITE.name}. Todos los derechos reservados.
+			</p>
+			<p class="cursor-pointer font-mono text-xs text-white/30">hecho con automatización</p>
+		</div>
+	</div>
+
+	<div
+		class="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2"
+		aria-hidden="true"
+	>
+<div
+			class="leading-none font-black tracking-tighter text-white/[0.02] whitespace-nowrap text-[4.5rem] md:text-[10rem] select-none"
+			data-reveal
+			style="--rd: 0.3s"
+		>
+			{SITE.name}
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,88 @@
+---
+import { WA_LINK, SITE } from "../lib/site";
+---
+
+<section
+	id="contacto"
+	class="relative scroll-mt-0 overflow-hidden bg-ink py-20 md:py-28"
+	aria-labelledby="contacto-title"
+>
+	<div
+		class="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink via-coal to-ink"
+		aria-hidden="true"
+	></div>
+	<div
+		class="pointer-events-none absolute top-8 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-lime/10 blur-3xl"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-6 text-center">
+		<span class="kicker text-lime" data-reveal>Contacto</span>
+
+		<h2
+			id="contacto-title"
+			class="display lines mt-4 text-4xl tracking-tighter text-white md:text-6xl"
+		>
+			<span class="line"><span>Listos para</span></span>
+			<span class="line"><span class="text-lime">automatizar?</span></span>
+		</h2>
+
+		<p
+			class="mt-6 max-w-xl font-mono text-sm text-white/60"
+			data-reveal
+			style="--rd: 0.2s"
+		>
+			Contanos qué proceso te está robando tiempo. Empezá por una conversación de 15
+			minutos — sin compromiso y con respuestas concretas.
+		</p>
+
+		<div
+			class="mt-9 flex flex-col items-center gap-3 sm:flex-row"
+			data-reveal
+			style="--rd: 0.3s"
+		>
+			<a href={WA_LINK} target="_blank" rel="noopener" class="btn btn-lime shine group">
+				Hablemos por WhatsApp
+				<svg
+					viewBox="0 0 24 24"
+					class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+				</svg>
+			</a>
+			<a
+				href={`mailto:${SITE.email}`}
+				class="btn border-2 border-white/20 text-white hover:bg-white hover:text-ink"
+			>
+				<svg
+					viewBox="0 0 24 24"
+					class="h-4 w-4"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<rect x="3" y="5" width="18" height="14" rx="2" />
+					<path d="m3 7 9 6 9-6" />
+				</svg>
+				{SITE.email}
+			</a>
+		</div>
+
+		<p
+			class="mt-8 font-mono text-[0.68rem] tracking-[0.18em] text-white/40"
+			data-reveal
+			style="--rd: 0.4s"
+		>
+			Respondemos en horas hábiles · Sin costo por la conversación inicial
+		</p>
+	</div>
+</section>
