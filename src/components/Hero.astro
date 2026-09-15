@@ -7,7 +7,7 @@ const features = ["Automatización", "Software a medida", "Datos & IA", "Llave e
 
 <section
 	id="hero"
-	class="noise-overlay relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-white"
+	class="noise-overlay relative flex min-h-svh items-center justify-center overflow-hidden bg-white md:min-h-[90vh]"
 	aria-labelledby="hero-title"
 >
 	<div
@@ -23,7 +23,7 @@ const features = ["Automatización", "Software a medida", "Datos & IA", "Llave e
 		aria-hidden="true"
 	></div>
 
-	<div class="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 pb-12 md:pt-32">
+	<div class="relative z-10 mx-auto w-full max-w-7xl px-5 pt-24 pb-16 sm:px-6 sm:pt-28 md:pt-32 md:pb-12">
 		<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-8">
 			<div class="space-y-6">
 				<span
@@ -34,7 +34,7 @@ const features = ["Automatización", "Software a medida", "Datos & IA", "Llave e
 					Consultora tecnológica · IA aplicada
 				</span>
 
-				<h1 id="hero-title" class="display lines text-5xl text-ink md:text-7xl">
+				<h1 id="hero-title" class="display lines text-[2.5rem] leading-[1.05] tracking-tighter text-balance text-ink sm:text-5xl md:text-7xl">
 					<span class="line">
 						<span style="--rd: 0.1s">Automatizamos</span>
 					</span>
@@ -44,15 +44,20 @@ const features = ["Automatización", "Software a medida", "Datos & IA", "Llave e
 				</h1>
 
 				<p
-					class="max-w-md font-mono text-lg text-ink/60 tracking-tight md:text-xl"
+					class="max-w-md font-mono text-base text-ink/60 tracking-tight sm:text-lg md:text-xl"
 					data-reveal
 					style="--rd: 0.35s"
 				>
 					Automatización, software y datos — todo potenciado con IA. Soluciones donde la tecnología puede hacer la diferencia y la llevamos a producción.
 				</p>
 
-				<div class="flex flex-wrap items-center gap-3 pt-2" data-reveal style="--rd: 0.45s">
-					<a href={WA_LINK} target="_blank" rel="noopener" class="btn btn-lime shine group">
+				<div class="flex flex-col items-stretch gap-3 pt-2 sm:flex-row sm:items-center" data-reveal style="--rd: 0.45s">
+					<a
+						href={WA_LINK}
+						target="_blank"
+						rel="noopener"
+						class="btn btn-lime shine group w-full sm:w-auto"
+					>
 						Hablemos por WhatsApp
 						<svg
 							viewBox="0 0 24 24"
@@ -67,7 +72,7 @@ const features = ["Automatización", "Software a medida", "Datos & IA", "Llave e
 							<path d="M17 8l4 4m0 0l-4 4m4-4H3" />
 						</svg>
 					</a>
-					<a href="#servicios" class="btn btn-outline shine">Ver cómo trabajamos</a>
+					<a href="#servicios" class="btn btn-outline shine w-full sm:w-auto">Ver cómo trabajamos</a>
 				</div>
 
 				<ul class="flex flex-wrap gap-x-5 gap-y-2.5 pt-2" data-reveal style="--rd: 0.55s">
@@ -85,7 +90,7 @@ const features = ["Automatización", "Software a medida", "Datos & IA", "Llave e
 						class="pointer-events-none absolute inset-0 scale-75 rounded-full bg-lime/30 blur-[80px]"
 						aria-hidden="true"
 					></div>
-					<Rabbit3D class="relative z-10 w-64 drop-shadow-2xl md:w-80" />
+					<Rabbit3D class="relative z-10 w-56 drop-shadow-2xl sm:w-64 md:w-80" />
 				</div>
 			</div>
 		</div>
