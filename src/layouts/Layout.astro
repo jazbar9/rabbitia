@@ -58,23 +58,51 @@ const {
 		<Footer />
 		<script>
 			const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-			const targets = document.querySelectorAll("[data-reveal], .lines");
+			const els = Array.from(document.querySelectorAll("[data-reveal], .lines"));
+
+			const reveal = (el) => {
+				if (!el.classList.contains("is-in")) {
+					el.classList.add("is-in");
+				}
+			};
 
 			if (reduce) {
-				targets.forEach((el) => el.classList.add("is-in"));
+				els.forEach(reveal);
 			} else {
 				const io = new IntersectionObserver(
 					(entries) => {
 						for (const en of entries) {
 							if (en.isIntersecting) {
-								en.target.classList.add("is-in");
+								reveal(en.target);
 								io.unobserve(en.target);
 							}
 						}
 					},
 					{ threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
 				);
-				targets.forEach((el) => io.observe(el));
+				els.forEach((el) => io.observe(el));
+
+				// Fallback por scroll: iOS Safari puede no disparar el observer
+				let ticking = false;
+				const onScroll = () => {
+					if (ticking) return;
+					ticking = true;
+					requestAnimationFrame(() => {
+						for (const el of els) {
+							if (el.classList.contains("is-in")) continue;
+							if (el.getBoundingClientRect().top <= window.innerHeight - 40) {
+								reveal(el);
+							}
+						}
+						ticking = false;
+						if (els.every((el) => el.classList.contains("is-in"))) {
+							window.removeEventListener("scroll", onScroll);
+							window.removeEventListener("resize", onScroll);
+						}
+					});
+				};
+				window.addEventListener("scroll", onScroll, { passive: true });
+				window.addEventListener("resize", onScroll);
 			}
 		</script>
 	</body>

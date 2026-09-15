@@ -167,6 +167,12 @@
 		animation: grain 8s steps(10, end) infinite;
 	}
 
+	@media (pointer: coarse) {
+		.noise-overlay::before {
+			animation: none;
+		}
+	}
+
 	/* ===== Nav underline (escala luego lime) ===== */
 	.nav-link {
 		position: relative;
